@@ -45,7 +45,3 @@
       (append ac-modes
 	      '(eshell-mode
 		)))
-
-(set-face-background 'ac-menu-face "lightgray")
-(set-face-underline 'ac-menu-face "darkgray")
-(set-face-background 'ac-selection-face "steelblue")
