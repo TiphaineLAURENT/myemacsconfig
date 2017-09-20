@@ -3,7 +3,7 @@
 A set of GNU/Emacs config that I use (because Emacs > all)
 Probably none of them are made by me, so you can find the link where i found them after their name
 
-## Config
+## Configuration files
 
 - EPITECH tools - **Add Epitech auto-updated header** - *[Kayofeld based on Nicolas Sadirac and Frederic Denis based on comment routines by Isaac](https://github.com/kayofeld/script-installation-ordinateur-epitech)*
 - PHP addon - **Adding php syntaxe** - *[Eric James Michael Ritz](https://github.com/ejmr/php-mode)*
@@ -38,7 +38,7 @@ mv ~/emacs ~/.emacs
 mv ~/emacs.d ~/.emacs.d
 ```
 
-## USAGE
+## Usage
 
 ### Basic Emacs
 
