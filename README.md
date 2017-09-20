@@ -49,4 +49,4 @@ emacs -nw afile
 
 ### Contributors
 
-See also the list of [contributors](https://github.com/TiphaineLAURENT/.bin/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/TiphaineLAURENT/myemacsconfig/contributors) who participated in this project.
