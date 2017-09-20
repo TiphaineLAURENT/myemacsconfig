@@ -5,9 +5,9 @@ Probably none of them are made by me, so you can find the link where i found the
 
 ## Config
 
-- EPITECH tools - **Add Epitech auto-updated header**
-- PHP addon - **Adding php syntaxe**
-- Auto-complete - **Add an autocomplete gui** - *[Author](https://math.berkeley.edu/~lowdanie/emacs_ac.html)*
+- EPITECH tools - **Add Epitech auto-updated header** - *[Kayofeld based on Nicolas Sadirac and Frederic Denis based on comment routines by Isaac](https://github.com/kayofeld/script-installation-ordinateur-epitech)*
+- PHP addon - **Adding php syntaxe** - *[Eric James Michael Ritz](https://github.com/ejmr/php-mode)*
+- Auto-complete - **Add an autocomplete gui** - *[Matsuyama Tomohiro](https://math.berkeley.edu/~lowdanie/emacs_ac.html)*
 
 ## Getting Started
 
