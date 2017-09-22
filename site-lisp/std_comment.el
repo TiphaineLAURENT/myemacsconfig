@@ -5,7 +5,7 @@
 ;; Login   <fred@epita.fr>
 ;; 
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Tue Nov 29 18:42:22 2016 Paul Montague
+;; Last update Thu Jul 15 10:34:13 2010 root
 ;;
 ;; Based on Comment routines by Isaac
 ;;
@@ -23,13 +23,13 @@
 (setq header-made-by	"Made by "
       header-login	"Login   "
       header-login-beg	"<"
-      header-login-mid	""
+      header-login-mid	"@"
       header-login-end	">"
       header-started	"Started on  "
       header-last	"Last update "
       header-for	" for "
       header-in		" in "
-      domaine-name	"")
+      domaine-name	"epitech.net")
 (if (setq user-nickname (getenv "USER_NICKNAME"))
     t 
   (setq user-nickname (user-full-name))
@@ -52,7 +52,8 @@
       std-html-alist            '( (cs . "<!--") (cc . "  -- ") (ce . "-->"))
       std-php-alist		'( (cs . "#!/usr/local/bin/php\n<?php") (cc . "// ")(ce . "//"))
       std-nroff-alist           '( (cs . "\\\"") (cc . "\\\" ") (ce . "\\\""))
-      std-sscript-alist         '( (cs . "#!/bin/sh")  (cc . "## ") (ce . "##"))
+      std-sscript-alist         '( (cs . "#!/bin/bash")  (cc . "## ") (ce . "##"))
+      std-python-alist		'( (cs . "#!/usr/bin/env python3.3") (cc . "## ") (ce . "##"))
       std-perl-alist            '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
       std-cperl-alist           '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
       )
@@ -83,6 +84,7 @@
 			("PHP"                 . std-php-alist)
                         ("Nroff"                . std-nroff-alist)
                         ("TeX"                  . std-latex-alist)
+			("Python"		. std-python-alist)
                         ("LaTeX"                . std-latex-alist))
       )
 
@@ -137,7 +139,7 @@
     (insert-string (concat (std-get 'cc)
 			   header-login
 			   header-login-beg
-			   "tiphaine.laurent@epitech.eu"
+			   (getenv "USER")
 			   header-login-mid
 			   domaine-name
 			   header-login-end))

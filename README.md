@@ -6,8 +6,9 @@ Probably none of them are made by me, so you can find the link where i found the
 ## Configuration files
 
 - EPITECH tools - **Add Epitech auto-updated header** - *[Kayofeld based on Nicolas Sadirac and Frederic Denis based on comment routines by Isaac](https://github.com/kayofeld/script-installation-ordinateur-epitech)*
-- PHP addon - **Adding php syntaxe** - *[Eric James Michael Ritz](https://github.com/ejmr/php-mode)*
-- Auto-complete - **Add an autocomplete gui** - *[Matsuyama Tomohiro](https://math.berkeley.edu/~lowdanie/emacs_ac.html)*
+- Web-Mode - **Add emacs compatiblity for editing web code (HTML, PHP, ...)** - *[Francois-Xavier Bois](http://github.com/fxbois/web-mode)*
+- Auto-complete - **Add an autocomplete gui** - *[Matsuyama Tomohiro](http://cx4a.org/software/auto-complete)*
+- CAMLdebug - **Debug tool based on gdb for CAML** - *[Albert Cohen and Erwan Jahier]()*
 
 ## Getting Started
 
@@ -27,15 +28,15 @@ To install this directory, first open a terminal, then:
 git clone git@github.com:TiphaineLAURENT/myemacsconfig.git
 ```
 
-- Move it to your home directory
+- Rename emacs configs and move them to your home directory
 ```
-mv myemacsconfig/emacs* ~/.
+mv ~/myemacsconfig/emacs ~/.emacs
+mv ~/myemacsconfig/emacs.d ~/.emacs.d
 ```
 
-- Rename them
+- Move site-lisp to your original one
 ```
-mv ~/emacs ~/.emacs
-mv ~/emacs.d ~/.emacs.d
+sudo mv -uit ~/myemacsconfig/site-lisp /usr/share/emacs/
 ```
 
 ## Usage
