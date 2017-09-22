@@ -5,7 +5,7 @@ Probably none of them are made by me, so you can find the link where i found the
 
 ## Configuration files
 
-- EPITECH tools - **Add Epitech auto-updated header** - *[Frederic Denis based on comment routines by Isaac](fred@epita.fr)*
+- EPITECH tools - **Add Epitech auto-updated header** - *[Nicolas Sadirac and Frederic Denis based on comment routines by Isaac](https://en.wikipedia.org/wiki/HTTP_404)*
 - Web-Mode - **Add emacs compatiblity for editing web code (HTML, PHP, ...)** - *[Francois-Xavier Bois](http://github.com/fxbois/web-mode)*
 - Auto-complete - **Add an autocomplete gui** - *[Matsuyama Tomohiro](http://cx4a.org/software/auto-complete)*
 - oCAML - **Debug tool based on gdb for CAML** - *[oCAML community](https://github.com/ocaml/ocaml)*
