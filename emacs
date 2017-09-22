@@ -5,7 +5,7 @@
 ;; Login   <dugal_c@epitech.net>
 ;; 
 ;; Started on  Thu Mar 13 17:37:11 2014 Clement DUGAL
-;; Last update Fri Sep 22 15:26:56 2017 Tiphaine
+;; Last update Fri Sep 22 16:17:07 2017 Tiphaine
 ;;
 
 ;; Add .emacs.d to load path and remove the warning echo area from
@@ -18,6 +18,11 @@
 (require 'std)
 (require 'std_comment)
 
+;; 80 column indicator [f9]
+(require 'fill-column-indicator)
+(global-set-key (kbd "<f9>") 'fci-mode)
+(setq fci-rule-column 80)
+
 ;; Auto-source for class headers [f7]
 (require 'auto-source)
 
@@ -25,13 +30,13 @@
 (setq c-basic-offset 8)
 
 ;; Affichage des lignes [f6]
-(global-linum-mode 1)
+(global-linum-mode t)
 (setq linum-format "%4d \u2502 ")
 (global-set-key (kbd "<f6>") 'linum-mode)
 
 ;; Affiche les lignes et colonnes dans la barre du bas
-(line-number-mode 1)
-(column-number-mode 1)
+(line-number-mode t)
+(column-number-mode t)
 
 ;; Reduit la fontion sur elle meme [home]:[f5]
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
@@ -43,14 +48,16 @@
 (global-set-key (kbd "<f5>") 'hs-show-block)
 
 ;; Montre les parentheses
-(show-paren-mode 1)
+(show-paren-mode t)
 
 ;; Descent/monte la fenetre de 3 lines quand le curseur est au bout
 (setq scroll-step 3)
 
 ;; Suppression des espaces en fin de ligne dans les fichiers C et C++
-(add-hook 'c-mode-hook '(lambda () (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
-(add-hook 'c++-mode-hook '(lambda () (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
+(add-hook 'c-mode-hook '(lambda ()(add-hook 'write-contents-hooks
+					    'delete-trailing-whitespace nil t)))
+(add-hook 'c++-mode-hook '(lambda () (add-hook 'write-contents-hooks
+					       'delete-trailing-whitespace nil t)))
 ;; Suppression des espaces en fin de ligne lors de la sauvegarde
 ;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 

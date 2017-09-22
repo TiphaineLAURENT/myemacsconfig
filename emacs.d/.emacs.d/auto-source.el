@@ -26,11 +26,11 @@
 
 (defun create-c-source ()
   (interactive)
-  (switch-to-buffer (concat (substring buffer-file-truename 0 -2) ".c"))
+  (find-file (concat (substring buffer-file-truename 0 -2) ".c"))
   )
 (defun create-c++-source ()
   (interactive)
-  (switch-to-buffer (concat (substring buffer-file-truename 0 -4) ".cpp"))
+  (find-file (concat (substring buffer-file-truename 0 -4) ".cpp"))
   )
 
 (add-hook 'c-mode-hook
