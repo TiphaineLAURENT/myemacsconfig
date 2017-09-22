@@ -5,7 +5,7 @@ Probably none of them are made by me, so you can find the link where i found the
 
 ## Configuration files
 
-- EPITECH tools - **Add Epitech auto-updated header** - *[Kayofeld based on Nicolas Sadirac and Frederic Denis based on comment routines by Isaac](https://github.com/kayofeld/script-installation-ordinateur-epitech)*
+- EPITECH tools - **Add Epitech auto-updated header** - *[Frederic Denis based on comment routines by Isaac](fred@epita.fr)*
 - Web-Mode - **Add emacs compatiblity for editing web code (HTML, PHP, ...)** - *[Francois-Xavier Bois](http://github.com/fxbois/web-mode)*
 - Auto-complete - **Add an autocomplete gui** - *[Matsuyama Tomohiro](http://cx4a.org/software/auto-complete)*
 - CAMLdebug - **Debug tool based on gdb for CAML** - *[Albert Cohen and Erwan Jahier]()*
