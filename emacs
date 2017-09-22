@@ -1,19 +1,28 @@
 ;;
-;; .emacs for emacs_config in /home/tiphaine
+;; .emacs for emacs_config in /home/tiphaineOB
 ;; 
 ;; Made by Clement DUGAL
 ;; Login   <dugal_c@epitech.net>
 ;; 
 ;; Started on  Thu Mar 13 17:37:11 2014 Clement DUGAL
-;; Last update Fri Sep 22 10:55:23 2017 Tiphaine
+;; Last update Fri Sep 22 15:26:56 2017 Tiphaine
 ;;
 
-;; DO NOT DELETE
+;; Add .emacs.d to load path and remove the warning echo area from
+;; the bottom of the screen
+(add-to-list 'load-path "~/.emacs.d/")
 (eval-after-load "warnings"
   '(setq display-warning-minimum-level :error))
-(load "std.el")
-(load "std_comment.el")
-(add-to-list 'load-path "~/.emacs.d/")
+
+;; Epitech header [C-c h]
+(require 'std)
+(require 'std_comment)
+
+;; Auto-source for class headers [f7]
+(require 'auto-source)
+
+;; Pas d'intentation (default 4)
+(setq c-basic-offset 8)
 
 ;; Affichage des lignes [f6]
 (global-linum-mode 1)
@@ -24,7 +33,7 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
-;; Reduit la fontion sur elle meme
+;; Reduit la fontion sur elle meme [home]:[f5]
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
 (add-hook 'lisp-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
@@ -36,7 +45,7 @@
 ;; Montre les parentheses
 (show-paren-mode 1)
 
-;; Descent/monte la fenetre de 2 lines quand le curseur est au bout
+;; Descent/monte la fenetre de 3 lines quand le curseur est au bout
 (setq scroll-step 3)
 
 ;; Suppression des espaces en fin de ligne dans les fichiers C et C++
