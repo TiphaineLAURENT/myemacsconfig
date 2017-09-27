@@ -139,7 +139,10 @@
     (insert-string (concat (std-get 'cc)
 			   header-login
 			   header-login-beg
-			   (getenv "USER")
+			   (if (boundp 'user-custom-name)
+			       user-custom-name
+			     (shell-command-to-string
+			      "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }'"));(getenv "USER"))
 			   header-login-mid
 			   domaine-name
 			   header-login-end))

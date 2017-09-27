@@ -5,7 +5,7 @@
 ;; Login   <dugal_c@epitech.net>
 ;; 
 ;; Started on  Thu Mar 13 17:37:11 2014 Clement DUGAL
-;; Last update Fri Sep 22 16:17:07 2017 Tiphaine
+;; Last update Wed Sep 27 11:44:33 2017 Tiphaine
 ;;
 
 ;; Add .emacs.d to load path and remove the warning echo area from
@@ -17,11 +17,13 @@
 ;; Epitech header [C-c h]
 (require 'std)
 (require 'std_comment)
+;(setq user-custom-name "tiphaine.laurent")
+(message (shell-command-to-string "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }'"))
 
-;; 80 column indicator [f9]
+;; Column indicator (default 70) [f9]
 (require 'fill-column-indicator)
 (global-set-key (kbd "<f9>") 'fci-mode)
-(setq fci-rule-column 80)
+(setq fci-rule-column 70)
 
 ;; Auto-source for class headers [f7]
 (require 'auto-source)
