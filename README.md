@@ -25,9 +25,10 @@ sudo apt-get install emacs
 
 To install this directory, first open a terminal, then:
 
-- Clone this repository:
+- Clone this repository and enter it:
 ```
 git clone git@github.com:TiphaineLAURENT/myemacsconfig.git
+cd myemacsconfig
 ```
 
 #### Manually
@@ -41,6 +42,13 @@ mv ~/myemacsconfig/emacs.d ~/.emacs.d
 - Move site-lisp to your original one
 ```
 sudo mv -uit ~/myemacsconfig/site-lisp /usr/share/emacs/
+```
+
+#### Automatically
+
+- Use the install script provided:
+```
+./install.sh
 ```
 
 ## Usage
