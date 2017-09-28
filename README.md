@@ -30,6 +30,8 @@ To install this directory, first open a terminal, then:
 git clone git@github.com:TiphaineLAURENT/myemacsconfig.git
 ```
 
+#### Manually
+
 - Rename emacs configs and move them to your home directory
 ```
 mv ~/myemacsconfig/emacs ~/.emacs
