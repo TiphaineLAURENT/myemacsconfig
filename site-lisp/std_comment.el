@@ -5,7 +5,7 @@
 ;; Login   <fred@epita.fr>
 ;; 
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Thu Jul 15 10:34:13 2010 root
+;; Last update Thu Sep 28 11:05:54 2017 Tiphaine
 ;;
 ;; Based on Comment routines by Isaac
 ;;
