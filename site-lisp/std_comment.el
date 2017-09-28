@@ -5,7 +5,7 @@
 ;; Login   <fred@epita.fr>
 ;; 
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Thu Sep 28 11:05:54 2017 Tiphaine
+;; Last update Thu Sep 28 10:59:13 2017 Tiphaine LAURENT
 ;;
 ;; Based on Comment routines by Isaac
 ;;
@@ -139,10 +139,16 @@
     (insert-string (concat (std-get 'cc)
 			   header-login
 			   header-login-beg
-			   (if (boundp 'user-custom-name)
-			       user-custom-name
-			     (shell-command-to-string
-			      "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }'"));(getenv "USER"))
+			   (progn
+			     (setq git-user
+				   (substring (shell-command-to-string "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }' | cut -d '@' -f 1") 0 -1))
+			     (if (boundp 'user-custom-name) user-custom-name
+			       (if (boundp 'git-user)
+				   (if (string= "" git-user) (getenv "USER")
+				     git-user)
+				 (getenv "USER"))
+			       )
+			     )
 			   header-login-mid
 			   domaine-name
 			   header-login-end))

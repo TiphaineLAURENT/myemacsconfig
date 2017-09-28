@@ -693,7 +693,7 @@ The *first* thing between '\\(' '\\)' will be extracted as tag content
     ("javascript" . "\\.js\\'\\|\\.js\\.erb\\'")
     ("json"       . "\\.\\(json\\|jsonld\\)\\'")
     ("jsx"        . "\\.jsx\\'")
-    ("html"       . "."))
+    ;;("html"       . ".")
   "content types")
 
 (defvar web-mode-engine-attr-regexp nil

@@ -1,11 +1,11 @@
 ;;
-;; .emacs for emacs_config in /home/tiphaineOB
+;; .emacs for Emacs in /home/tiphaine
 ;; 
-;; Made by Clement DUGAL
-;; Login   <dugal_c@epitech.net>
+;; Made by Tiphaine
+;; Login   <tiphaine.laurent@epitech.net>
 ;; 
-;; Started on  Thu Mar 13 17:37:11 2014 Clement DUGAL
-;; Last update Wed Sep 27 11:44:33 2017 Tiphaine
+;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
+;; Last update Thu Sep 28 16:57:10 2017 Tiphaine
 ;;
 
 ;; Add .emacs.d to load path and remove the warning echo area from
@@ -15,10 +15,9 @@
   '(setq display-warning-minimum-level :error))
 
 ;; Epitech header [C-c h]
+;; Set user-custom-name if you want to specify a name for your header
 (require 'std)
 (require 'std_comment)
-;(setq user-custom-name "tiphaine.laurent")
-(message (shell-command-to-string "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }'"))
 
 ;; Column indicator (default 70) [f9]
 (require 'fill-column-indicator)
@@ -28,8 +27,15 @@
 ;; Auto-source for class headers [f7]
 (require 'auto-source)
 
-;; Pas d'intentation (default 4)
-(setq c-basic-offset 8)
+;; Auto-indent on save
+;(add-hook 'before-save-hook 'c-indent-defun)
+
+;; Pas d'intentation
+(setq c-basic-offset 2			; Indent level after keyword (default: 2)
+      c-indent-tabs-mode t		; Indent using tab (default: true)
+      c-indent-level 8			; Tab length (default: 8)
+      c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
+      )
 
 ;; Affichage des lignes [f6]
 (global-linum-mode t)
@@ -40,14 +46,12 @@
 (line-number-mode t)
 (column-number-mode t)
 
-;; Reduit la fontion sur elle meme [home]:[f5]
+;; Reduit ou developpe la fontion [home]
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
 (add-hook 'lisp-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'hs-minor-mode)
-(global-set-key (kbd "<home>") 'hs-hide-block)
-;; Et la developpe
-(global-set-key (kbd "<f5>") 'hs-show-block)
+(global-set-key (kbd "<home>") 'hs-toggle-hiding)
 
 ;; Montre les parentheses
 (show-paren-mode t)
