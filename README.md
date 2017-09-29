@@ -1,4 +1,4 @@
-# .emacs and .emacs.d
+# .emacs, .emacs.d and site-lisp
 
 A set of GNU/Emacs config that I use (because Emacs > all)
 Probably none of them are made by me, so you can find the link where i found them after their name
