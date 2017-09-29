@@ -5,69 +5,19 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Thu Sep 28 16:57:10 2017 Tiphaine
+;; Last update Fri Sep 29 13:33:15 2017 Tiphaine
 ;;
 
-;; Add .emacs.d to load path and remove the warning echo area from
-;; the bottom of the screen
-(add-to-list 'load-path "~/.emacs.d/")
-(eval-after-load "warnings"
-  '(setq display-warning-minimum-level :error))
+; EMACS SETUP
 
-;; Epitech header [C-c h]
-;; Set user-custom-name if you want to specify a name for your header
-(require 'std)
-(require 'std_comment)
+;; Make auto-save if emacs if killed
+;;; BE CAREFUL IF YOU DISABLE IT
+(add-hook 'kill-emacs-hook 'do-auto-save)
 
-;; Column indicator (default 70) [f9]
-(require 'fill-column-indicator)
-(global-set-key (kbd "<f9>") 'fci-mode)
-(setq fci-rule-column 70)
+;; Add elisp folder to load path
+(add-to-list 'load-path "~/.emacs.d/elisp")
 
-;; Auto-source for class headers [f7]
-(require 'auto-source)
-
-;; Auto-indent on save
-;(add-hook 'before-save-hook 'c-indent-defun)
-
-;; Pas d'intentation
-(setq c-basic-offset 2			; Indent level after keyword (default: 2)
-      c-indent-tabs-mode t		; Indent using tab (default: true)
-      c-indent-level 8			; Tab length (default: 8)
-      c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
-      )
-
-;; Affichage des lignes [f6]
-(global-linum-mode t)
-(setq linum-format "%4d \u2502 ")
-(global-set-key (kbd "<f6>") 'linum-mode)
-
-;; Affiche les lignes et colonnes dans la barre du bas
-(line-number-mode t)
-(column-number-mode t)
-
-;; Reduit ou developpe la fontion [home]
-(add-hook 'c-mode-common-hook 'hs-minor-mode)
-(add-hook 'lisp-mode-hook 'hs-minor-mode)
-(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-(add-hook 'python-mode-hook 'hs-minor-mode)
-(global-set-key (kbd "<home>") 'hs-toggle-hiding)
-
-;; Montre les parentheses
-(show-paren-mode t)
-
-;; Descent/monte la fenetre de 3 lines quand le curseur est au bout
-(setq scroll-step 3)
-
-;; Suppression des espaces en fin de ligne dans les fichiers C et C++
-(add-hook 'c-mode-hook '(lambda ()(add-hook 'write-contents-hooks
-					    'delete-trailing-whitespace nil t)))
-(add-hook 'c++-mode-hook '(lambda () (add-hook 'write-contents-hooks
-					       'delete-trailing-whitespace nil t)))
-;; Suppression des espaces en fin de ligne lors de la sauvegarde
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Deplacement auto des fichier~ dans le dossier ~/.emacs.d/backup
+;; Change backup files' folder to  ~/.emacs.d/backup
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
       backup-by-copying t
       version-control t
@@ -76,11 +26,71 @@
       kept-old-versions 5
       )
 
+
+; USER CONFIGURATION
+
+;; Auto-indent on save
+;;; Disabled by default to prevent wrong emacs indentation
+;(add-hook 'before-save-hook 'c-indent-defun)
+
+;; Indentation step
+(setq c-basic-offset 2			; Indent level after keyword (default: 2)
+      c-indent-tabs-mode t		; Indent using tab (default: true)
+      c-indent-level 8			; Tab length (default: 8)
+      c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
+      )
+
+;; Lign number display [f6]
+;;; Default value is true
+(global-linum-mode t)
+(setq linum-format "%4d \u2502 ")
+(global-set-key (kbd "<f6>") 'linum-mode)
+
+;; Lign and column number bottom display
+;;; Default value is true | true
+(line-number-mode t)
+(column-number-mode t)
+
+;; Wrap and unwrap function's core [home]
+(add-hook 'c-mode-common-hook 'hs-minor-mode)
+(add-hook 'lisp-mode-hook 'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'python-mode-hook 'hs-minor-mode)
+(global-set-key (kbd "<home>") 'hs-toggle-hiding)
+
+;; Montre les parentheses
+;;; Default value is true
+(show-paren-mode t)
+
+;; Scroll the window when cursor near extremity
+;;; Default value is 3
+(setq scroll-step 3)
+
+;; Trailing whitespace deleted in C and C++ mode
+;;; Default value is true | true
+(add-hook 'c-mode-hook
+	  '(lambda() (add-hook 'write-contents-hooks
+			       'delete-trailing-whitespace nil t)))
+(add-hook 'c++-mode-hook
+	  '(lambda() (add-hook 'write-contents-hooks
+			       'delete-trailing-whitespace nil t)))
+
+;; Traling backspace deletion at save time in all mode
+;;; Disabled by default
+;;; You can enable it to delete trailing whitespace in all mode
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; C++ mode for .h file
+;;; Disabled by default because of the use of .hpp
+;(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+
+; USER CUSTOM MAJOR MODE
+
 ;; Auto-completion
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
 (ac-config-default)
-
 
 ;; Config pour le web dev
 (require 'web-mode)
@@ -98,5 +108,19 @@
         ("blade"  . "\\.blade\\."))
       )
 
-;; C++ mode pour les fichiers .h ;; Disabled because of the use of hpp for C++
-;(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; Auto-source for class headers [f7]
+(require 'auto-source)
+
+;; Epitech header [C-c h]
+;;; Set user-custom-name if you want to specify a name for your header
+(require 'std)
+(require 'std_comment)
+;(setq user-custom-name "")
+
+;; Column indicator [f9]
+;;; Default value is 70
+;;; Increase readability and debug speed of your code
+(require 'fill-column-indicator)
+(add-hook 'c-mode-common-hook 'fci-mode)
+(global-set-key (kbd "<f9>") 'fci-mode)
+(setq fci-rule-column 70)
