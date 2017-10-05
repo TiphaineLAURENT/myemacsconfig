@@ -5,7 +5,7 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Fri Sep 29 13:33:15 2017 Tiphaine
+;; Last update Thu Oct  5 16:27:27 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
@@ -66,14 +66,12 @@
 ;;; Default value is 3
 (setq scroll-step 3)
 
-;; Trailing whitespace deleted in C and C++ mode
+;; Trailing whitespace deleted in C style language(Java, python, ...)
 ;;; Default value is true | true
-(add-hook 'c-mode-hook
+(add-hook 'c-mode-common-hook
 	  '(lambda() (add-hook 'write-contents-hooks
 			       'delete-trailing-whitespace nil t)))
-(add-hook 'c++-mode-hook
-	  '(lambda() (add-hook 'write-contents-hooks
-			       'delete-trailing-whitespace nil t)))
+
 
 ;; Traling backspace deletion at save time in all mode
 ;;; Disabled by default
