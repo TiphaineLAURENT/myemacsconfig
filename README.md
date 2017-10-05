@@ -11,6 +11,7 @@ Probably none of them are made by me, so you can find the link where i found the
 - oCAML - **Debug tool based on gdb for CAML** - *[oCAML community](https://github.com/ocaml/ocaml)*
 - Auto-source - **Classes source file creation tool** - *[Tiphaine LAURENT](https://github.com/TiphaineLAURENT/myemacsconfig)*
 - Fill-Column-Indicator - **Draw a column for programming syntaxe** - *[Alpaker](https://github.com/alpaker/Fill-Column-Indicator)*
+- And some other configs
 
 ## Getting Started
 
