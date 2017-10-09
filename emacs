@@ -5,7 +5,7 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Thu Oct  5 16:27:27 2017 Tiphaine
+;; Last update Mon Oct  9 17:47:03 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
@@ -34,11 +34,17 @@
 ;(add-hook 'before-save-hook 'c-indent-defun)
 
 ;; Indentation step
-(setq c-basic-offset 2			; Indent level after keyword (default: 2)
+(setq c-default-style "linux"
+      c-basic-offset 8			; Indent level at start of line (default: 2)
+      c-indent-level 8			; Indent level in line (default: 8)
+      tab-width 8			; Tab length in all mode
       c-indent-tabs-mode t		; Indent using tab (default: true)
-      c-indent-level 8			; Tab length (default: 8)
       c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
       )
+
+;; Arguments indentation
+;;; Default value is 5
+(set-variable 'c-argdecl-indent 0)
 
 ;; Lign number display [f6]
 ;;; Default value is true

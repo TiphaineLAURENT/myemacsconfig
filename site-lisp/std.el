@@ -1,11 +1,11 @@
 ;;
-;; div.el for emacs conf in site-local
+;; std.el for emacs conf in site-local
 ;; 
 ;; Made by Nicolas Sadirac
 ;; Login   <rn@epita.fr>
 ;; 
 ;; Started on  Sun Oct 17 02:20:57 1993 Nicolas Sadirac
-;; Last update Thu Jul  8 12:47:38 2010 root
+;; Last update Mon Oct  9 17:23:16 2017 Tiphaine
 ;;
 
 (defun do_insert_time () 
