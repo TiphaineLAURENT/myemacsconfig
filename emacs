@@ -5,7 +5,7 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Tue Oct 10 14:46:25 2017 Tiphaine
+;; Last update Tue Oct 10 15:52:14 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
@@ -31,13 +31,11 @@
 ; USER CONFIGURATION
 
 ;; Indentation step
-(setq c-default-style "linux"
+(setq c-default-style "linux"		; Default style (default: gnu)
       c-basic-offset 8			; Indent level at start of line (default: 2)
-      c-indent-level 8			; Indent level in line (default: 4)
       tab-width 8			; Tab length in all mode (default: 4)
       c-indent-tabs-mode t		; Indent using tab (default: true)
       c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
-      c-label-offset 0			; Indentation level after statement (default: 0)
       )
 
 ;; Lign number display [f6]
