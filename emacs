@@ -5,46 +5,40 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Mon Oct  9 17:47:03 2017 Tiphaine
+;; Last update Tue Oct 10 14:46:25 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
 
-;; Make auto-save if emacs if killed
+;; Make auto-save if emacs is killed
 ;;; BE CAREFUL IF YOU DISABLE IT
 (add-hook 'kill-emacs-hook 'do-auto-save)
 
 ;; Add elisp folder to load path
+;;; Use this folder to register new mode
 (add-to-list 'load-path "~/.emacs.d/elisp")
 
-;; Change backup files' folder to  ~/.emacs.d/backup
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-      backup-by-copying t
-      version-control t
-      delete-old-versions t
-      kept-new-versions 5
-      kept-old-versions 5
+;; Change backup configurations
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup")) ; Change directory
+      backup-by-copying t				    ; Make copy rather than rename
+      version-control t					    ; Allow emacs to create numbered backup
+      delete-old-versions t				    ; Remove excess backup silently
+      kept-new-versions 2				    ; Number of newest backups to keep
+      kept-old-versions 2				    ; Number of oldest backups to keep
       )
 
 
 ; USER CONFIGURATION
 
-;; Auto-indent on save
-;;; Disabled by default to prevent wrong emacs indentation
-;(add-hook 'before-save-hook 'c-indent-defun)
-
 ;; Indentation step
 (setq c-default-style "linux"
       c-basic-offset 8			; Indent level at start of line (default: 2)
-      c-indent-level 8			; Indent level in line (default: 8)
-      tab-width 8			; Tab length in all mode
+      c-indent-level 8			; Indent level in line (default: 4)
+      tab-width 8			; Tab length in all mode (default: 4)
       c-indent-tabs-mode t		; Indent using tab (default: true)
       c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
+      c-label-offset 0			; Indentation level after statement (default: 0)
       )
-
-;; Arguments indentation
-;;; Default value is 5
-(set-variable 'c-argdecl-indent 0)
 
 ;; Lign number display [f6]
 ;;; Default value is true
@@ -78,7 +72,6 @@
 	  '(lambda() (add-hook 'write-contents-hooks
 			       'delete-trailing-whitespace nil t)))
 
-
 ;; Traling backspace deletion at save time in all mode
 ;;; Disabled by default
 ;;; You can enable it to delete trailing whitespace in all mode
@@ -96,7 +89,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
 (ac-config-default)
 
-;; Config pour le web dev
+;; Web developpement configurations
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
@@ -128,3 +121,8 @@
 (add-hook 'c-mode-common-hook 'fci-mode)
 (global-set-key (kbd "<f9>") 'fci-mode)
 (setq fci-rule-column 70)
+
+;; Lua mode
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))

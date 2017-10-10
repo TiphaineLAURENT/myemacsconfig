@@ -6,11 +6,12 @@ Probably none of them are made by me, so you can find the link where i found the
 ## Configuration files
 
 - EPITECH tools - **Add Epitech auto-updated header** - *[Nicolas SADIRAC and Frederic DENIS based on comment routines by Isaac](https://en.wikipedia.org/wiki/HTTP_404)*
-- Web-Mode - **Emacs compatiblity for editing web code (HTML, PHP, ...)** - *[Francois-Xavier BOIS](http://github.com/fxbois/web-mode)*
+- Web-Mode - **Emacs compatiblity for editing web languages(HTML, PHP, ...)** - *[Francois-Xavier BOIS](http://github.com/fxbois/web-mode)*
 - Auto-complete - **Autocomplete gui** - *[Matsuyama TOMOHIRO](http://cx4a.org/software/auto-complete)*
 - oCAML - **Debug tool based on gdb for CAML** - *[oCAML community](https://github.com/ocaml/ocaml)*
 - Auto-source - **Classes source file creation tool** - *[Tiphaine LAURENT](https://github.com/TiphaineLAURENT/myemacsconfig)*
 - Fill-Column-Indicator - **Draw a column for programming syntaxe** - *[Alpaker](https://github.com/alpaker/Fill-Column-Indicator)*
+- Lua-mode - **Emacs compatibily for editing Lua** - *[Tons of Contributors](http://immerrr.github.com/lua-mode)*
 - And some other configs
 
 ## Getting Started
