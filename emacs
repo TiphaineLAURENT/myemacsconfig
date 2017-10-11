@@ -5,7 +5,7 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Tue Oct 10 15:52:14 2017 Tiphaine
+;; Last update Wed Oct 11 14:40:44 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
@@ -37,6 +37,11 @@
       c-indent-tabs-mode t		; Indent using tab (default: true)
       c-tab-always-indent t		; Tab always mean indent; use M-i to write tab (default: true)
       )
+
+;; Cursor movement
+;;; Set emacs cursor movement to fit camelCase
+;;; Default is normal-mode
+(subword-mode 1)
 
 ;; Lign number display [f6]
 ;;; Default value is true
@@ -120,7 +125,14 @@
 (global-set-key (kbd "<f9>") 'fci-mode)
 (setq fci-rule-column 70)
 
-;; Lua mode
+;; Lua developpement
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+
+;; Electric case
+(require 'electric-case)
+(add-hook 'c-mode-hook 'electric-case-c-init)
+(add-hook 'c++-mode-hook 'electric-case-java-init)
+(add-hook 'scala-mode-hook 'electric-case-scala-init)
+(add-hook 'ahk-mode-hook 'electric-case-ahk-init)
