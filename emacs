@@ -5,7 +5,7 @@
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Wed Oct 11 14:40:44 2017 Tiphaine
+;; Last update Thu Oct 12 17:08:59 2017 Tiphaine
 ;;
 
 ; EMACS SETUP
@@ -80,10 +80,6 @@
 ;;; You can enable it to delete trailing whitespace in all mode
 ;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; C++ mode for .h file
-;;; Disabled by default because of the use of .hpp
-;(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
 
 ; USER CUSTOM MAJOR MODE
 
@@ -126,7 +122,7 @@
 (setq fci-rule-column 70)
 
 ;; Lua developpement
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(require 'lua-mode)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
