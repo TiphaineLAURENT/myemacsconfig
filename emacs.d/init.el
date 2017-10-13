@@ -1,11 +1,11 @@
 ;;
-;; .emacs for Emacs in /home/tiphaine
+;; init.el for Emacs in /home/tiphaine
 ;; 
 ;; Made by Tiphaine
 ;; Login   <tiphaine.laurent@epitech.net>
 ;; 
 ;; Started on  Thu Sep 28 16:43:44 2017 Tiphaine
-;; Last update Thu Oct 12 17:08:59 2017 Tiphaine
+;; Last update Fri Oct 13 14:01:49 2017 Tiphaine
 ;;
 
 ; EMACS SETUP

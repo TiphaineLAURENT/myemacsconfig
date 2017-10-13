@@ -38,7 +38,6 @@ cd myemacsconfig
 
 - Rename emacs configs and move them to your home directory
 ```
-mv ~/myemacsconfig/emacs ~/.emacs
 mv ~/myemacsconfig/emacs.d ~/.emacs.d
 ```
 

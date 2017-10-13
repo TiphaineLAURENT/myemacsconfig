@@ -76,7 +76,7 @@
   (unless (face-differs-from-default-p 'camldebug-event)
     (invert-face 'camldebug-event))
   (unless (face-differs-from-default-p 'camldebug-underline)
-    (set-face-underline-p 'camldebug-underline t))
+    (set-face-underline 'camldebug-underline t))
   (setq camldebug-overlay-event (make-overlay 1 1))
   (overlay-put camldebug-overlay-event 'face 'camldebug-event)
   (setq camldebug-overlay-under (make-overlay 1 1))
@@ -449,7 +449,7 @@ around point."
       (setq camldebug-complete-list nil))
     (setq camldebug-complete-list
 	  (sort camldebug-complete-list 'string-lessp))
-    (comint-dynamic-simple-complete command-word camldebug-complete-list)))
+    (completion-in-region command-word camldebug-complete-list)))
 
 (define-key camldebug-mode-map "\C-l" 'camldebug-refresh)
 (define-key camldebug-mode-map "\t" 'comint-dynamic-complete)
