@@ -1,41 +1,13 @@
 ;;
-;; StdComment.el for Emacs in ~/Emacs
-;; 
-;; Made by Frederic Denis
-;; Login   <fred@epita.fr>
-;; 
-;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Thu Sep 28 10:59:13 2017 Tiphaine LAURENT
-;;
-;; Based on Comment routines by Isaac
+;; EPITECH PROJECT, 2017
+;; emacs configuration
+;; File description:
+;; standard epitech header configuration
 ;;
 
-(if (file-exists-p "/usr/school/etc/emacs/php-mode.el")
-    (load-file "/usr/school/etc/emacs/php-mode.el"))
-
-(add-to-list 'auto-mode-alist (cons "\\.php[0-9]*$" 'php-mode))
-
-(global-set-key "h" 'update-std-header)
-(global-set-key	"" 'do_insert_time)
 (global-set-key	"" 'std-file-header)
-
-
-(setq header-made-by	"Made by "
-      header-login	"Login   "
-      header-login-beg	"<"
-      header-login-mid	"@"
-      header-login-end	">"
-      header-started	"Started on  "
-      header-last	"Last update "
-      header-for	" for "
-      header-in		" in "
-      domaine-name	"epitech.net")
-(if (setq user-nickname (getenv "USER_NICKNAME"))
-    t 
-  (setq user-nickname (user-full-name))
-)
-
-(setq write-file-hooks (cons 'update-std-header write-file-hooks))
+(setq header-epitech		"EPITECH PROJECT, "
+      header-description	"File description:")
 
 (setq std-c-alist               '( (cs . "/*") (cc . "** ") (ce . "*/") )
       std-css-alist             '( (cs . "/*") (cc . "** ") (ce . "*/") )
@@ -52,8 +24,7 @@
       std-html-alist            '( (cs . "<!--") (cc . "  -- ") (ce . "-->"))
       std-php-alist		'( (cs . "#!/usr/local/bin/php\n<?php") (cc . "// ")(ce . "//"))
       std-nroff-alist           '( (cs . "\\\"") (cc . "\\\" ") (ce . "\\\""))
-      std-sscript-alist         '( (cs . "#!/bin/bash")  (cc . "## ") (ce . "##"))
-      std-python-alist		'( (cs . "#!/usr/bin/env python3.3") (cc . "## ") (ce . "##"))
+      std-sscript-alist         '( (cs . "#!/bin/sh")  (cc . "## ") (ce . "##"))
       std-perl-alist            '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
       std-cperl-alist           '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
       )
@@ -84,7 +55,6 @@
 			("PHP"                 . std-php-alist)
                         ("Nroff"                . std-nroff-alist)
                         ("TeX"                  . std-latex-alist)
-			("Python"		. std-python-alist)
                         ("LaTeX"                . std-latex-alist))
       )
 
@@ -93,81 +63,33 @@
   (cdr (assoc a (eval (cdr (assoc mode-name std-modes-alist)))))
   )
 
-(defun update-std-header ()
-  "Updates std header with last modification time & owner.\n(According to mode)"
-  (interactive)
-  (save-excursion
-    (if (buffer-modified-p)
-        (progn
-          (goto-char (point-min))
-          (if (search-forward header-last nil t)
-              (progn
-;               (delete-region (point-at-bol) (point-at-eol))                                                                                                                   
-                (delete-region
-                 (progn (beginning-of-line) (point))
-                 (progn (end-of-line) (point)))
-                (insert-string (concat (std-get 'cc)
-                                       header-last
-                                       (current-time-string)
-                                       " "
-                                       user-nickname))
-                (message "Last modification header field updated."))))))
-  nil)
-
 (defun std-file-header ()
   "Puts a standard header at the beginning of the file.\n(According to mode)"
   (interactive)
   (goto-char (point-min))
-  (let ((projname "toto")(location "tiuti"))
+  (let ((projname "toto")(projdescription "tiuti"))
     (setq projname (read-from-minibuffer
 		    (format "Type project name (RETURN to quit) : ")))
-    (setq location (getenv "PWD"))
+    (setq projdescription (read-from-minibuffer
+		    (format "Type short file description (RETURN to quit) : ")))
 
     (insert-string (std-get 'cs))
     (newline)
     (insert-string (concat (std-get 'cc)
-			   (buffer-name)
-			   header-for
-			   projname
-			   header-in
-			   location))
-    (newline)
-    (insert-string (std-get 'cc))
-    (newline)
-    (insert-string (concat (std-get 'cc) header-made-by user-nickname))
+			   header-epitech
+			   (format-time-string "%Y")))
     (newline)
     (insert-string (concat (std-get 'cc)
-			   header-login
-			   header-login-beg
-			   (progn
-			     (setq git-user
-				   (substring (shell-command-to-string "cat ~/.gitconfig 2> /dev/null | grep -E 'email' | awk '{ printf $NF }' | cut -d '@' -f 1") 0 -1))
-			     (if (boundp 'user-custom-name) user-custom-name
-			       (if (boundp 'git-user)
-				   (if (string= "" git-user) (getenv "USER")
-				     git-user)
-				 (getenv "USER"))
-			       )
-			     )
-			   header-login-mid
-			   domaine-name
-			   header-login-end))
-    (newline)
-    (insert-string (std-get 'cc))
+			   projname))
     (newline)
     (insert-string (concat (std-get 'cc)
-			   header-started
-			   (current-time-string)
-			   " "
-			   user-nickname))
+			   header-description))
     (newline)
     (insert-string (concat (std-get 'cc)
-			   header-last
-			   (current-time-string)
-			   " "
-			   user-nickname))
+			   projdescription))
     (newline)
     (insert-string (std-get 'ce))
+    (newline)
     (newline)))
 
 (defun insert-std-vertical-comments ()
@@ -259,4 +181,3 @@
 	     (define-key tex-mode-map ""
 	       'comment-region)))
 
-(provide 'std_comment)
