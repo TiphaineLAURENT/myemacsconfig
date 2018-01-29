@@ -181,3 +181,4 @@
 	     (define-key tex-mode-map ""
 	       'comment-region)))
 
+(provide 'std_comment)
