@@ -1,0 +1,45 @@
+##
+## EPITECH PROJECT, 2018
+## Babel
+## File description:
+## Makefile
+##
+
+MKDIR	:= mkdir
+CD	:= cd
+CONAN	:= conan
+CMAKE	:= cmake
+MAKE	:= make
+LN	:= ln
+RM	:= rm
+TAR	:= tar
+
+DIR_TO_COMPRESS	:=	ressource
+
+
+all:
+	${MKDIR} -p build \
+	&& ${CONAN} install . -if build -b missing \
+	&& ${CMAKE} -Bbuild -H. -G"Unix Makefiles" \
+	&& ${MAKE} -C build
+
+clean:
+	${MAKE} clean -C build
+	${RM} -f Babel
+	${RM} -rf cmake-build-debug
+
+fclean: clean
+	${RM} -r build
+
+re:	fclean all
+
+compress:
+	&& ${CMAKE} -build .. \
+	${TAR} -cjvf ${DIR_TO_COMPRESS}.tar.bz2 ${DIR_TO_COMPRESS}
+	${RM} -r ${DIR_TO_COMPRESS}
+
+uncompress:
+	${TAR} -xjvf ${DIR_TO_COMPRESS}.tar.bz2
+	${RM} ${DIR_TO_COMPRESS}.tar.bz2
+
+.PHONY: all clean fclean

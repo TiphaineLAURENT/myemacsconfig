@@ -1,0 +1,126 @@
+#!/usr/bin/python3
+
+from sys import argv
+
+class Pacman304:
+    def __init__(self, mapname, verbose=False):
+        self.map = []
+        self.fantoms = []
+        i = 0
+        with open(mapname, 'r') as f:
+            for line in f.readlines():
+                self.map.append(list(line[:-1]))
+                for c_idx, char in enumerate(self.map[i]):
+                    if char == 'P':
+                        self.pac_position = {'x': c_idx, 'y': i}
+                    elif char == 'F':
+                        self.fantoms.append({'x': c_idx, 'y': i})
+                i += 1
+        self.visited = []
+        self.verbose = verbose
+
+    def __str__(self):
+        display = ""
+        for line in self.map:
+            display += "".join(line) + "\n"
+
+        if self.verbose:
+            display += "Pacman : "+ str(self.pac_position) + "\n"
+
+            display += "Fantoms:\n"
+            for fantom in self.fantoms:
+                display += str(fantom) + "\n"
+        return display[:-1]
+
+    def replace(self, old, new):
+        for line in self.map:
+            for c_idx, char in enumerate(line):
+                if char in old:
+                    idx = old.index(char)
+                    line[c_idx] = new[idx]
+
+    def find_path(self):
+        def find(seq, f):
+            for el in seq:
+                if f(el):
+                    return el
+
+        class Node:
+            def __init__(self, x, y, wall=False, start=False, end=False):
+                self.x = x
+                self.y = y
+                self.distance = float("inf")
+                self.wall = wall
+                self.start = start
+                self.end = end
+
+            def __str__(self):
+                return "x: "+ str(self.x) +", y: "+ str(self.y) +", distance: "+ str(self.distance) +", wall: "+ str(self.wall) +", start: "+ str(self.start) +", end: "+ str(self.end)
+
+            def up(self, nodes):
+                return find(unvisited, lambda el: el.x == self.x and el.y == self.y - 1 and not el.wall)
+
+            def right(self, nodes):
+                return find(unvisited, lambda el: el.x == self.x + 1 and el.y == self.y and not el.wall)
+
+            def down(self, nodes):
+                return find(unvisited, lambda el: el.x == self.x and el.y == self.y + 1 and not el.wall)
+
+            def left(self, nodes):
+                return find(unvisited, lambda el: el.x == self.x - 1 and el.y == self.y and not el.wall)
+
+        unvisited = []
+        for r_idx, row in enumerate(self.map):
+            for c_idx, col in enumerate(row):
+                unvisited.append(Node(c_idx, r_idx, col == '1', col == 'F', col == 'P'))
+        current = find(unvisited, lambda el: el.start)
+        current.distance = 0
+
+        while unvisited and not current.end:
+            if self.verbose:
+                print(current)
+            up = current.up(unvisited)
+            if up:
+                if up.distance > current.distance + 1:
+                    up.distance = current.distance + 1
+
+            right = current.right(unvisited)
+            if right:
+                if right.distance > current.distance + 1:
+                    right.distance = current.distance + 1
+
+            down = current.down(unvisited)
+            if down:
+                if down.distance > current.distance + 1:
+                    down.distance = current.distance + 1
+
+            left = current.left(unvisited)
+            if left:
+                if left.distance > current.distance + 1:
+                    left.distance = current.distance + 1
+
+            self.visited.append(current)
+            unvisited.remove(current)
+            if unvisited:
+                current = min(unvisited, key=lambda el: el.distance)
+
+    def draw_path(self):
+        for node in self.visited[1:]:
+            if self.verbose:
+                print(node)
+            self.map[node.y][node.x] = str(node.distance % 10)
+
+if __name__ == "__main__":
+    if len(argv) != 4:
+        exit(84)
+
+    pathfinder = Pacman304(argv[1], verbose=True)
+
+    pathfinder.find_path()
+    print(pathfinder)
+
+    pathfinder.replace("10", argv[2] + argv[3])
+    print(pathfinder)
+
+    pathfinder.draw_path()
+    print(pathfinder)

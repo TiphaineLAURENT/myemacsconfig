@@ -1,0 +1,14 @@
+#include <array>
+#include <iostream>
+#include <string>
+
+int main()
+{
+	std::array<std::array<int, 1>, 5> array = {{1}, {2}, {3}};
+
+	for (auto &i : array) {
+		for (auto &e : i) {
+		std::cout << e << std::endl;
+	}
+	return 0;
+}

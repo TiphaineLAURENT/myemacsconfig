@@ -1,0 +1,9 @@
+#include <array>
+
+int main()
+{
+	std::array<5, int> array = {1, 2, 3};
+
+	std::cout << array << std::endl;
+	return 0;
+}

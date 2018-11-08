@@ -1,0 +1,6 @@
+a: a.o b.o
+cc -o a a.o b.oa.o: a.c a.h
+cc -c a.cb.o: b.c b.h
+cc -c b.cc: c.o a.o
+cc -o a c.o b.oc.o: c.c c.h
+cc -c c.c

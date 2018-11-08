@@ -1,0 +1,88 @@
+cmake_minimum_required(VERSION 3.9)
+project(CPP_babel_2018)
+
+
+# Project setup
+set(CMAKE_CXX_STANDARD 17)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
+
+
+# Font fix
+set(ENV{QT_QPA_FONTDIR} "/src/font")
+
+SET(CMAKE_AUTOMOC ON)
+SET(CMAKE_AUTOUIC ON)
+SET(CMAKE_AUTORCC ON)
+
+
+# set(CMAKE_CXX_FLAGS "-fPIC -DQT_NO_VERSION_TAGGING")
+include(${CMAKE_SOURCE_DIR}/build/conanbuildinfo.cmake)
+conan_basic_setup()
+
+
+# Opus C++ abstraction
+set(BOPUS_SOURCE_DIR "src/bopus")
+set(BOPUS_SOURCE_FILES
+        ${BOPUS_SOURCE_DIR}/BOpus.cpp ${BOPUS_SOURCE_DIR}/BOpus.hpp
+        )
+add_library(BOpus SHARED ${BOPUS_SOURCE_FILES})
+set_target_properties(BOpus PROPERTIES LINKER_LANGUAGE CXX)
+
+
+# PortAudio C++ abstraction
+set(BPORTAUDIO_SOURCE_DIR "src/bportaudio")
+set(BPORTAUDIO_SOURCE_FILES
+        ${BPORTAUDIO_SOURCE_DIR}/BPortAudio.cpp ${BPORTAUDIO_SOURCE_DIR}/BPortAudio.hpp
+        ${BPORTAUDIO_SOURCE_DIR}/Stream.cpp ${BPORTAUDIO_SOURCE_DIR}/Stream.hpp
+        )
+add_library(BPortAudio SHARED ${BPORTAUDIO_SOURCE_FILES})
+set_target_properties(BOpus PROPERTIES LINKER_LANGUAGE CXX)
+
+
+# Babel client executable
+set(CLIENT_SOURCE_DIR "src/client")
+set(CLIENT_SOURCE_FILES ${CLIENT_SOURCE_DIR}/main.cpp
+        ${CLIENT_SOURCE_DIR}/Client.cpp ${CLIENT_SOURCE_DIR}/Client.hpp
+        ${CLIENT_SOURCE_DIR}/GUI.cpp ${CLIENT_SOURCE_DIR}/GUI.hpp
+        ${CLIENT_SOURCE_DIR}/Network.cpp ${CLIENT_SOURCE_DIR}/Network.hpp)
+find_package(Qt5 COMPONENTS Core Gui Widgets DBus Network REQUIRED)
+add_executable(Babel_client ${CLIENT_SOURCE_FILES})
+set_target_properties(Babel_client PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(Babel_client PRIVATE
+        ${BOPUS_SOURCE_DIR}
+        ${BPORTAUDIO_SOURCE_DIR}
+        )
+target_link_libraries(Babel_client
+        ${CONAN_LIBS}
+        Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Network
+        BOpus
+        BPortAudio
+#        opus
+        portaudio
+        )
+
+
+# Babel server executable
+set(SERVER_SOURCE_DIR "src/server")
+set(SERVER_SOURCE_FILES ${SERVER_SOURCE_DIR}/main.cpp
+        ${SERVER_SOURCE_DIR}/Server.cpp ${SERVER_SOURCE_DIR}/Server.hpp
+        ${SERVER_SOURCE_DIR}/Message.cpp ${SERVER_SOURCE_DIR}/Message.hpp)
+add_executable(Babel_server ${SERVER_SOURCE_FILES})
+set_target_properties(Babel_server PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(Babel_server PRIVATE
+        ${BOPUS_SOURCE_DIR}
+        ${BPORTAUDIO_SOURCE_DIR}
+        )
+target_link_libraries(Babel_server
+        ${CONAN_LIBS}
+        BOpus
+        BPortAudio
+        )
+
+
+# Installation setup
+install(TARGETS Babel_client Babel_server BOpus BPortAudio
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib/static
+        )

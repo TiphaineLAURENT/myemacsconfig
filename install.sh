@@ -5,5 +5,5 @@ sudo apt-get install emacs
 
 echo "Copying .emacs.d"
 cp -vau emacs.d ~/.emacs.d
-echo "Copying site-list"
-sudo cp -vau site-lisp/* /usr/share/emacs/site-lisp/
+# echo "Copying site-list"
+# sudo cp -vau site-lisp/* /usr/share/emacs/site-lisp/

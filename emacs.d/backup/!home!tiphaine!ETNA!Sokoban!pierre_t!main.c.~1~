@@ -1,0 +1,109 @@
+/*
+** ETNA PROJECT, 31/10/2018 by pierre_t
+** Projet
+** File description:
+**      main.c
+*/
+#include "lib_sokoban.h"
+#include <unistd.h>
+#include <string.h>
+
+typedef struct test{
+    int x;
+    int y;
+}pos_t;
+    
+void my_putnbr(int n);
+
+char **allocate_map(char *file_name);
+
+int my_putchar(char c)
+{
+    write (1, &c, 1);
+    return 0;
+}
+
+int my_putstr(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+        {
+            my_putchar(str[i]);
+            i++;
+        }
+    return 0;
+}
+
+char *read_line();
+
+char position(char **a, pos_t *pos_player)
+{
+    int j = 0;
+    while( a[j] != NULL){
+        int i = 0;
+        while (a[j][i] != '\0'){
+            if (a[j][i] == 'P'){
+                return(a[j][i]);
+                pos_player->x = i;
+                pos_player->y = j;
+            }
+            i++;     
+        }
+        j++;
+    }
+    return 0;
+}
+
+int gauche(pos_t *pos_player)
+{
+    if(pos_player->y - 1 != '#'){
+    pos_player->y = pos_player->y - 1;
+    }
+    return 0;
+}
+int avancer(pos_t *pos_player)
+{
+    if (pos_player->x - 1 != '#'){
+        pos_player->x = pos_player->x - 1;
+    }
+    return 0;
+    }
+
+int droite(pos_t *pos_player)
+{
+    if (pos_player->x + 1 != '#'){
+        pos_player->x = pos_player->x + 1;
+    }
+    return 0;
+}
+
+int reculer(pos_t *pos_player)
+{
+    if (pos_player->y + 1 != '#'){
+        pos_player->y = pos_player->y + 1;
+    }
+    return 0;
+}
+
+int main (int argc, char **argv)
+{
+    char **a;
+    int i;
+
+    (void)argc;
+    a = allocate_map(argv[1]);
+    
+    
+    while ( a[i] != '\0')
+        {
+            my_putstr(a[i]);
+            my_putchar('\n');
+            i++;
+        } 
+    //my_putchar(position(a)); // affiche le perso
+    //my_putchar('\n');
+
+    
+    return 0;
+}
+

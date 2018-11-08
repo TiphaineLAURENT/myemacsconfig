@@ -1,0 +1,89 @@
+#!/bin/bash
+
+############################
+#			   #
+# Made by Tiphaine LAURENT #
+#			   #
+############################
+
+LOGIN=`cat ~/.gitconfig 2> /dev/null | grep -E "email" | awk '{ printf $NF }'`
+GIT_SERVER="git@git.epitech.eu"
+
+if [[ -z $LOGIN ]]; then
+    echo
+    echo "Configure GIT first :"
+    echo
+    echo "git config --global user.email \"your login\""
+    echo "git config --global user.name \"your full name\""
+    echo
+fi
+
+if [[ $1 == "h" ]] || [[ $1 == "-h" ]] ||
+       [[ $1 == "help" ]] || [[ $1 == "--help" ]] ||
+       [[ -z $1 ]]; then
+
+    echo "Usage:"
+    echo -e "\tprepare_my_repo <name of repository> <user 2> <user 3> <user 4> <user 5>"
+    echo -e "\tUsers 2 to 5 are optional"
+    echo
+    echo -e "\tprepare_my_repo <-h|--help>"
+    echo -e "\tShow prepare_my_repo script's usage"
+    echo
+    echo "EPITECH login : $LOGIN"
+    echo "Blih repository path : $GIT_SERVER:/$LOGIN/"
+
+    exit 1
+
+elif [[ -n $1 ]]; then
+
+    blih -u $LOGIN repository create $1 && blih -u $LOGIN repository setacl $1 ramassage-tek r && git clone $GIT_SERVER:/$USER/$1
+    OK=`echo $?`
+    if [[ $OK == 1 ]]; then
+       exit 84
+    fi
+    echo "Repository $1 créé"
+    echo "Droit de lecture attribué à ramassage-tek"
+    echo "Repository copié"
+fi
+
+if [[ -n $2 ]]; then
+
+    blih -u $LOGIN repository setacl $1 $2 rw
+
+    echo "Droit de lecture et d'écriture attribué à $2"
+
+fi
+
+if [[ -n $3 ]]; then
+
+    blih -u $LOGIN repository setacl $1 $3 rw
+
+    echo "Droit de lecture et d'écriture attribué à $3"
+
+fi
+
+if [[ -n $4 ]]; then
+
+    blih -u $LOGIN repository setacl $1 $4 rw
+
+    echo "Droit de lecture et d'écriture attribué à $4"
+
+fi
+
+if [[ -n $5 ]]; then
+
+    blih -u $LOGIN repository setacl $1 $5 rw
+
+    echo "Droit de lecture et d'écriture attribué à $5"
+
+fi
+
+if [[ -n $6 ]]; then
+
+    blih -u $LOGIN repository setacl $1 $6 rw
+
+    echo "Droit de lecture et d'écriture attribué à $6"
+
+fi
+
+exit 0

@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+static size_t my_strlen(const char *str)
+{
+	return *str == 0 ? 0 : my_strlen(str + 1) + 1;
+}
+
+int main()
+{
+	printf("%d", my_strlen("test"));
+}
